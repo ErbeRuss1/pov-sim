@@ -1,3 +1,7 @@
 node_modules
 .env
 .gradle
+airlines/.DS_Store
+airlines/build/
+airlines/instrumentation/
+flights/__pycache__/
