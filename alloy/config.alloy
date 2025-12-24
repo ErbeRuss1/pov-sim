@@ -1,6 +1,6 @@
 // this configures logging of Alloy itself
 logging {
-  level  = "debug"
+  level  = "info"
   format = "logfmt"
 }
 
