@@ -12,14 +12,13 @@ from random import randint
 import os
 import pyroscope
 
-# Initialize Pyroscope with environment variables
 pyroscope.configure(
-    application_name = os.getenv('PYROSCOPE_APPLICATION_NAME_FOR_FLIGHTS', 'app name not found'),
-    server_address = os.getenv('PYROSCOPE_SERVER_ADDRESS', 'server address not found'),
-    basic_auth_username = os.getenv('PYROSCOPE_BASIC_AUTH_USER', 'basic auth username not found'),
-    basic_auth_password = os.getenv('PYROSCOPE_BASIC_AUTH_PASSWORD', 'basic auth password not found'),
-
+    application_name     = os.environ.get("PYROSCOPE_APPLICATION_NAME_FOR_FLIGHTS"),
+    server_address       = os.environ.get("PYROSCOPE_SERVER_ADDRESS"),
+    basic_auth_username  = os.environ.get("PYROSCOPE_BASIC_AUTH_USER"),
+    basic_auth_password  = os.environ.get("PYROSCOPE_BASIC_AUTH_PASSWORD"),
 )
+
 
 # Acquire a tracer
 tracer = trace.get_tracer("flights.tracer")
