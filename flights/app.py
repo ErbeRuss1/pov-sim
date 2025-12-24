@@ -13,7 +13,7 @@ import os
 import pyroscope
 
 pyroscope.configure(
-    application_name     = os.environ.get("PYROSCOPE_APPLICATION_NAME_FOR_FLIGHTS"),
+    application_name     = os.environ.get("PYROSCOPE_APPLICATION_NAME"),
     server_address       = os.environ.get("PYROSCOPE_SERVER_ADDRESS"),
     basic_auth_username  = os.environ.get("PYROSCOPE_BASIC_AUTH_USER"),
     basic_auth_password  = os.environ.get("PYROSCOPE_BASIC_AUTH_PASSWORD"),
@@ -81,7 +81,7 @@ def get_flights(airline):
       raise Exception(f"Encountered {status_code} error") # pylint: disable=broad-exception-raised
     random_int = get_random_int(100, 999)
 
-    with tracer.start_as_current_span("flights") as flight_span:
+    with tracer.start_as_current_span("flights", kind=trace.SpanKind.SERVER) as flight_span:
         # trace span
         flight_span.set_attribute("airline", airline)
         # metric
