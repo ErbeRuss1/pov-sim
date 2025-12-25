@@ -26,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 @RestController
 @CrossOrigin(origins = "*") // Allow requests from React app
 public class AirlinesController {
