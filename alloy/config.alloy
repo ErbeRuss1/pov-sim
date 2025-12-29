@@ -39,7 +39,8 @@ otelcol.processor.transform "add_custom_log_labels" {
   log_statements {
     context    = "log"
     statements = [
-      "set(attributes[\"testLabel1\"], \"someValue\")",
+      "set(attributes[\"region\"], \"us-west\")",
+      "set(attributes[\"assigned_oa\"], \"russerbe\")",
     ]
   }
   output {
