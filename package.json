@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@grafana/faro-react": "^2.1.0",
+    "@grafana/faro-web-sdk": "^2.1.0",
+    "@grafana/faro-web-tracing": "^2.1.0"
+  },
+  "devDependencies": {
+    "@grafana/faro-webpack-plugin": "^0.8.2"
+  }
+}
