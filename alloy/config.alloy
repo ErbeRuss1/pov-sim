@@ -39,6 +39,11 @@ otelcol.processor.transform "add_custom_log_labels" {
   log_statements {
     context    = "log"
     statements = [
+      // Write onto resource so Loki indexes as labels
+      "set(resource.attributes[\"exporter\"], \"OTLP\")",
+      "set(resource.attributes[\"job\"], resource.attributes[\"service.name\"])",
+      // Tell Loki which resource attrs to promote as labels
+      "set(attributes[\"loki.resource.labels\"], \"exporter,job,service.name,service.instance.id\")",
       "set(attributes[\"region\"], \"us-west\")",
       "set(attributes[\"assigned_oa\"], \"russerbe\")",
     ]
