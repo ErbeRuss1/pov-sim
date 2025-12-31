@@ -10,7 +10,7 @@
 # ./airlines-loadgen.sh
 #
 # Specify a 25% error rate, 30 sec duration, and base URL:
-# ./airlines-loadgen.sh -e 0.25 -d 30 -b http://localhost:8081
+# ./airlines-loadgen.sh -e 0.25 -d 30 -b http://localhost:8080
 #
 # Run help command to see details and usage options:
 # ./airlines-loadgen.sh -h
@@ -83,7 +83,7 @@ run_loadgen() {
         # Ping GET airlines
         # Invoke error per error rate
         QUERY_PARAMS=""
-        RAND_DEC=($echo "0.$((RANDOM % 100))")
+        RAND_DEC=$(echo "0.$((RANDOM % 100))")
         if (( $(echo "$RAND_DEC < $ERROR_RATE" | bc -l) )); then
             QUERY_PARAMS=$GET_AIRLINES_RAISE_QUERY_PARAM
         fi
