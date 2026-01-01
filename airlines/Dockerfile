@@ -33,8 +33,8 @@ ENV JAVA_TOOL_OPTIONS=-javaagent:/app/opentelemetry-javaagent.jar
 # Copy the pyroscope JAR file
 COPY --from=build /app/instrumentation/pyroscope.jar pyroscope.jar
 
-# set up javaagent, now 2 of them, and configure pyroscope server address
-ENV JAVA_TOOL_OPTIONS='-javaagent:/app/opentelemetry-javaagent.jar -javaagent:/app/pyroscope.jar=pyroscope.profiling.enabled=true,pyroscope.server.address=${PYROSCOPE_SERVER_ADDRESS}'
+# set up javaagent, now 2 of them, and configure pyroscope app name + labels to match OTEL service
+ENV JAVA_TOOL_OPTIONS='-javaagent:/app/opentelemetry-javaagent.jar -javaagent:/app/pyroscope.jar=pyroscope.profiling.enabled=true,pyroscope.server.address=${PYROSCOPE_SERVER_ADDRESS},pyroscope.application.name=${PYROSCOPE_APPLICATION_NAME},pyroscope.labels.service_name=${OTEL_SERVICE_NAME},pyroscope.labels.service_instance_id=${HOSTNAME}'
 
 # Set the command to run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
