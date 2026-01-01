@@ -13,10 +13,15 @@ import os
 import pyroscope
 
 pyroscope.configure(
-    application_name     = os.environ.get("PYROSCOPE_APPLICATION_NAME"),
-    server_address       = os.environ.get("PYROSCOPE_SERVER_ADDRESS"),
-    basic_auth_username  = os.environ.get("PYROSCOPE_BASIC_AUTH_USER"),
-    basic_auth_password  = os.environ.get("PYROSCOPE_BASIC_AUTH_PASSWORD"),
+  application_name     = os.environ.get("PYROSCOPE_APPLICATION_NAME"),
+  server_address       = os.environ.get("PYROSCOPE_SERVER_ADDRESS"),
+  basic_auth_username  = os.environ.get("PYROSCOPE_BASIC_AUTH_USER"),
+  basic_auth_password  = os.environ.get("PYROSCOPE_BASIC_AUTH_PASSWORD"),
+  tags                 = {
+    # Align Pyroscope profile labels with OTEL service.name so App Observability queries match
+    "service_name": os.environ.get("OTEL_SERVICE_NAME"),
+    "service_instance_id": os.environ.get("HOSTNAME"),
+  },
 )
 
 
